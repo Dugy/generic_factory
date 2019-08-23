@@ -11,7 +11,7 @@ class GenericFactory {
 	std::unordered_map<std::string, std::function<std::unique_ptr<Parent>(Args...)>> _children;
 	std::mutex _mutex;
 
-	GenericFactory() = default;
+	GenericFactory() = default; // No need to forbid copying or moving, because it's impossible to obtain an instance from outside
 
 	static GenericFactory &getGenericFactory()
 	{
