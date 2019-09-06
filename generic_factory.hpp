@@ -132,10 +132,10 @@ template<typename Constructed, typename FromParent, typename FromChild, typename
 struct AcceptedPointerTypeHelper<Constructed, FromParent, FromChild, typename std::enable_if<std::is_constructible<Constructed, FromChild*, Args...>::value, FromChild>::type, Args...> {
 	using type = FromParent*;
 };
+}
 
 template<typename Constructed, typename FromParent, typename FromChild, typename... Args>
-using AcceptedPointerType = typename AcceptedPointerTypeHelper<Constructed, FromParent, FromChild, FromChild, Args...>::type;
-}
+using AcceptedPointerType = typename GenericFactoryInternals::AcceptedPointerTypeHelper<Constructed, FromParent, FromChild, FromChild, Args...>::type;
 
 template<typename ConstructedParent, typename PrimaryParent, typename... Args>
 class GenericSecondaryFactory {
